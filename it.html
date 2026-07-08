@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOODOLU - Delicious Food Delivered Fast</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --yellow: #FFD700;
+            --blue: #0e7ded;
+            --dark-blue: #0A2463;
+            --light-yellow: #FFF9C4;
+            --white: #FFFFFF;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .logo h1 {
+            color: var(--blue);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .cta-button {
+            background-color: var(--yellow);
+            color: var(--dark-blue);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-text h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--light-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--blue);
+            font-size: 30px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        /* Popular Dishes */
+        .popular-dishes {
+            padding: 80px 0;
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .dish-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .dish-card:hover {
+            transform: scale(1.05);
+        }
+
+        .dish-image {
+            height: 200px;
+            background-color: var(--light-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            font-size: 50px;
+        }
+
+        .dish-info {
+            padding: 20px;
+        }
+
+        .dish-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .dish-price {
+            color: var(--blue);
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .order-btn {
+            background-color: var(--yellow);
+            color: var(--dark-blue);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -10px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--blue);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        /* Download App */
+        .download-app {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--yellow) 0%, var(--light-yellow) 100%);
+        }
+
+        .app-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .app-text {
+            flex: 1;
+        }
+
+        .app-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .app-text p {
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .app-btn {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .app-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-btn i {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+
+        .app-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .app-image img {
+            max-width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-yellow);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--yellow);
+            color: var(--dark-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin: 20px 0;
+            }
+
+            .nav-links li {
+                margin: 0 10px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-bottom: 40px;
+            }
+
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+
+            .app-content {
+                flex-direction: column;
+            }
+
+            .app-text {
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .app-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1>FOOD<span>OLU</span></h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <button class="cta-button">Order Now</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Delicious Food Delivered to Your Doorstep</h2>
+                    <p>Experience the best food from your favorite restaurants with fast delivery. Order now and satisfy your cravings!</p>
+                    <button class="cta-button">Order Now</button>
+                </div>
+                <div class="hero-image">
+                    <!-- Food Delivery Image -->
+                    <img src="https://images.pexels.com/photos/4393668/pexels-photo-4393668.jpeg" alt="Food Delivery">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose FOODOLU?</h2>
+                <p>We provide the best food delivery experience with our unique features</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your food delivered in under 30 minutes with our optimized delivery routes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍕</div>
+                    <h3>Wide Selection</h3>
+                    <p>Choose from hundreds of restaurants and thousands of dishes in your area.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Easy Payment</h3>
+                    <p>Pay with credit card, digital wallet, or cash on delivery - your choice!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Quality Guarantee</h3>
+                    <p>We ensure the quality and freshness of every meal delivered to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Dishes -->
+    <section class="popular-dishes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Dishes</h2>
+                <p>Check out our most ordered dishes from top restaurants</p>
+            </div>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <div class="dish-image">🍔</div>
+                    <div class="dish-info">
+                        <h3>Classic Burger</h3>
+                        <p>Juicy veg patty with fresh vegetables and special sauce</p>
+                        <div class="dish-price">₹ 250</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <div class="dish-image">🍕</div>
+                    <div class="dish-info">
+                        <h3>Pepperoni Pizza</h3>
+                        <p>Classic pizza with mozzarella and premium pepperoni</p>
+                        <div class="dish-price">₹ 400</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <div class="dish-image">🥪</div>
+                    <div class="dish-info">
+                        <h3> Roasted sandwich</h3>
+                        <p>a creamy toast which is dilisious and healthy</p>
+                        <div class="dish-price">₹ 200</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <div class="dish-image">🍰</div>
+                    <div class="dish-info">
+                        <h3>cheese cake</h3>
+                        <p>A decedent, rich dessert with creamy cheese filling and crunchy crust.</p>
+                        <div class="dish-price">₹ 250</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Ordering with FOODOLU is simple and easy</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Browse Menu</h3>
+                    <p>Choose your favorite dishes from a wide selection of restaurants</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Place Order</h3>
+                    <p>Add items to your cart and securely checkout</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Track Delivery</h3>
+                    <p>Track your order in real-time from kitchen to your door</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Enjoy Food</h3>
+                    <p>Savor your delicious meal delivered hot and fresh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download App -->
+    <section class="download-app">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-text">
+                    <h2>Get the FOODOLU App</h2>
+                    <p>Order food on the go with our easy-to-use mobile app. Available on iOS and Android.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="app-btn"><i></i> App Store</a>
+                        <a href="#" class="app-btn"><i>▶</i> Google Play</a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <!-- App Screenshot -->
+                    <img src="https://www.icoderzsolutions.com/image/food-delivery-app.webp" alt="Food Delivery App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About FOODOLU</h3>
+                    <p>FOODOLU is your go-to food delivery app bringing delicious meals from your favorite restaurants right to your doorstep.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>Email: info@foodolu.com</li>
+                        <li>Phone: +91 9530444006</li>
+                        <li>Address: c-sector , azad nagar , bhilwara (raj.) 311001</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">👍</a>
+                        <a href="#" class="social-icon">🐦</a>
+                        <a href="#" class="social-icon">📸</a>
+                        <a href="#" class="social-icon">▶</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 FOODOLU. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
