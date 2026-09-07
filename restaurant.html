@@ -265,27 +265,304 @@
         🛒 Cart: <span id="cartCount">0</span> items
     </div>
 
-  <script>
+ <script>
+
+const restaurants = {
+
+    sharma: {
+        name: "Sharma Restaurant",
+        cuisine: "North Indian",
+        rating: "4.6",
+        price: "₹200 for two",
+        delivery: "25-30 min",
+        offer: "20% OFF",
+        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80",
+        menu: [
+            {
+                name: "Paneer Butter Masala",
+                description: "Creamy tomato gravy with soft paneer.",
+                price: 180
+            },
+            {
+                name: "Dal Tadka",
+                description: "Yellow dal tempered with Indian spices.",
+                price: 120
+            },
+            {
+                name: "Butter Naan",
+                description: "Soft naan topped with butter.",
+                price: 40
+            },
+            {
+                name: "Veg Biryani",
+                description: "Aromatic basmati rice with vegetables.",
+                price: 160
+            },
+            {
+                name: "Masala Dosa",
+                description: "Crispy dosa served with chutney and sambar.",
+                price: 120
+            },
+            {
+                name: "Veg Manchurian",
+                description: "Crispy vegetable balls in spicy sauce.",
+                price: 150
+            }
+        ]
+    },
+
+    pizza: {
+        name: "Pizza House",
+        cuisine: "Italian • Pizza",
+        rating: "4.5",
+        price: "₹350 for two",
+        delivery: "30-35 min",
+        offer: "30% OFF",
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80",
+        menu: [
+            {
+                name: "Margherita Pizza",
+                description: "Classic pizza with cheese and tomato.",
+                price: 199
+            },
+            {
+                name: "Farmhouse Pizza",
+                description: "Loaded with onion, capsicum and tomato.",
+                price: 299
+            },
+            {
+                name: "Paneer Pizza",
+                description: "Spicy paneer with mozzarella cheese.",
+                price: 329
+            },
+            {
+                name: "Garlic Bread",
+                description: "Freshly baked garlic bread with herbs.",
+                price: 129
+            },
+            {
+                name: "Cheese Burst Pizza",
+                description: "Extra cheesy pizza with cheese-filled crust.",
+                price: 349
+            },
+            {
+                name: "Veg Pasta",
+                description: "Creamy Italian pasta with vegetables.",
+                price: 199
+            }
+        ]
+    },
+
+    foodjunction: {
+        name: "Food Junction",
+        cuisine: "Indian • Chinese",
+        rating: "4.4",
+        price: "₹220 for two",
+        delivery: "30-40 min",
+        offer: "25% OFF",
+        image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=80",
+        menu: [
+            {
+                name: "Chole Bhature",
+                description: "Spicy chole served with fluffy bhature.",
+                price: 140
+            },
+            {
+                name: "Veg Fried Rice",
+                description: "Fried rice loaded with fresh vegetables.",
+                price: 150
+            },
+            {
+                name: "Hakka Noodles",
+                description: "Spicy Chinese style vegetable noodles.",
+                price: 160
+            },
+            {
+                name: "Paneer Tikka",
+                description: "Grilled paneer with Indian spices.",
+                price: 220
+            },
+            {
+                name: "Pav Bhaji",
+                description: "Mumbai-style spicy pav bhaji.",
+                price: 120
+            },
+            {
+                name: "Veg Burger",
+                description: "Crispy veg patty with fresh vegetables.",
+                price: 130
+            }
+        ]
+    },
+
+    royalbites: {
+        name: "Royal Bites",
+        cuisine: "Mughlai • North Indian",
+        rating: "4.8",
+        price: "₹400 for two",
+        delivery: "25-35 min",
+        offer: "35% OFF",
+        image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1600&q=80",
+        menu: [
+            {
+                name: "Shahi Paneer",
+                description: "Rich creamy gravy with soft paneer.",
+                price: 220
+            },
+            {
+                name: "Kadhai Paneer",
+                description: "Paneer cooked with capsicum and spices.",
+                price: 210
+            },
+            {
+                name: "Butter Chicken",
+                description: "Creamy butter chicken cooked in tomato gravy.",
+                price: 280
+            },
+            {
+                name: "Chicken Biryani",
+                description: "Aromatic basmati rice with juicy chicken.",
+                price: 260
+            },
+            {
+                name: "Garlic Naan",
+                description: "Tandoori naan topped with garlic and butter.",
+                price: 60
+            },
+            {
+                name: "Tandoori Platter",
+                description: "Assorted tandoori starters.",
+                price: 350
+            }
+        ]
+    }
+
+};
 
 
-   let cart = JSON.parse(localStorage.getItem("foodoluCart")) || [];
+document.addEventListener("DOMContentLoaded", function () {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const id = params.get("id");
+
+    console.log("Restaurant ID:", id);
+
+    const restaurant = restaurants[id];
+
+    if (!restaurant) {
+
+        document.getElementById("restaurantName").textContent =
+            "Restaurant Not Found";
+
+        document.getElementById("restaurantCuisine").textContent =
+            "Please go back and select a restaurant.";
+
+        return;
+    }
+
+
+    document.title = restaurant.name + " - FOODOLU";
+
+
+    document.getElementById("restaurantName").textContent =
+        restaurant.name;
+
+    document.getElementById("restaurantCuisine").textContent =
+        restaurant.cuisine;
+
+    document.getElementById("restaurantCuisine2").textContent =
+        restaurant.cuisine;
+
+    document.getElementById("restaurantRating").textContent =
+        restaurant.rating;
+
+    document.getElementById("restaurantPrice").textContent =
+        restaurant.price;
+
+    document.getElementById("restaurantDelivery").textContent =
+        restaurant.delivery;
+
+    document.getElementById("restaurantOffer").textContent =
+        restaurant.offer;
+
+
+    document.getElementById("restaurantImage").src =
+        restaurant.image;
+
+
+    const menuContainer =
+        document.getElementById("menuContainer");
+
+
+    menuContainer.innerHTML = "";
+
+
+    restaurant.menu.forEach(function (item) {
+
+        menuContainer.innerHTML += `
+
+            <div class="menu-item">
+
+                <div class="menu-info">
+
+                    <h3>${item.name}</h3>
+
+                    <p>${item.description}</p>
+
+                    <div class="price">
+                        ₹${item.price}
+                    </div>
+
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="addToCart('${item.name}', ${item.price})">
+
+                    + Add
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+});
+
+
+let cart =
+    JSON.parse(localStorage.getItem("foodoluCart")) || [];
 
 
 function addToCart(name, price) {
 
-    const existingItem = cart.find(item => item.name === name);
+    const existing =
+        cart.find(item => item.name === name);
 
-    if (existingItem) {
-        existingItem.quantity++;
+
+    if (existing) {
+
+        existing.quantity++;
+
     } else {
+
         cart.push({
             name: name,
             price: price,
             quantity: 1
         });
+
     }
 
-    localStorage.setItem("foodoluCart", JSON.stringify(cart));
+
+    localStorage.setItem(
+        "foodoluCart",
+        JSON.stringify(cart)
+    );
+
 
     updateCart();
 
@@ -294,30 +571,40 @@ function addToCart(name, price) {
 
 function updateCart() {
 
-    let totalItems = 0;
+    let count = 0;
 
-    cart.forEach(item => {
-        totalItems += item.quantity;
+    cart.forEach(function (item) {
+
+        count += item.quantity;
+
     });
 
-    document.getElementById("cartCount").textContent = totalItems;
 
-    if (totalItems > 0) {
-        document.getElementById("cart").style.display = "block";
-    } else {
-        document.getElementById("cart").style.display = "none";
+    document.getElementById("cartCount").textContent =
+        count;
+
+
+    if (count > 0) {
+
+        document.getElementById("cart").style.display =
+            "block";
+
     }
+
 }
 
 
 function openCart() {
+
     window.location.href = "cart.html";
+
 }
 
 
-document.getElementById("cart").onclick = openCart;
+document.getElementById("cart").onclick =
+    openCart;
 
-updateCart(); </script>
+</script>
 
 </body>
 </html>
