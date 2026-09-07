@@ -744,7 +744,100 @@
 
     .copyright {
         font-size: 12px;
-    }
+    } 
+
+    /* Restaurant Section */
+.restaurants {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.restaurant-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-image {
+    height: 190px;
+    position: relative;
+    overflow: hidden;
+}
+
+.restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.restaurant-card:hover .restaurant-image img {
+    transform: scale(1.08);
+}
+
+.favourite {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.restaurant-info {
+    padding: 18px;
+}
+
+.restaurant-info h3 {
+    color: var(--dark-blue);
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.restaurant-meta {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.restaurant-price {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.restaurant-delivery {
+    font-size: 14px;
+    color: #555;
+}
+
+.offer-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 5px 10px;
+    background: var(--light-yellow);
+    color: var(--blue);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
 }
     </style>
 </head>
@@ -773,7 +866,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h2>Delicious Food Delivered to Your Doorstep</h2>
+                    <h2>Hungry? Find your food. 🍔 </br> Discover the best restaurants around you, compare menus, and order your favourite food—all in one place.</h2>
                     <p>Experience the best food from your favorite restaurants with fast delivery. Order now and satisfy your cravings!</p>
                     <button class="cta-button">Order Now</button>
                 </div>
@@ -816,6 +909,168 @@
             </div>
         </div>
     </section>
+
+    <!-- Popular Restaurants -->
+<section class="restaurants">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Popular Restaurants Near You</h2>
+            <p>Discover the best restaurants and order your favourite food</p>
+        </div>
+
+        <div class="restaurant-grid">
+
+            <!-- Restaurant 1 -->
+          <div class="restaurant-card" onclick="openRestaurant('sharma')">
+
+                <div class="restaurant-image">
+                    <img 
+                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
+                        alt="Sharma Restaurant"
+                    >
+
+                    <button class="favourite" onclick="toggleFavourite(this)">
+                        ♡
+                    </button>
+                </div>
+
+                <div class="restaurant-info">
+                    <h3>Sharma Restaurant</h3>
+
+                    <div class="restaurant-meta">
+                        ⭐ 4.6 &nbsp; • &nbsp; 🍽 North Indian
+                    </div>
+
+                    <div class="restaurant-price">
+                        ₹200 for two
+                    </div>
+
+                    <div class="restaurant-delivery">
+                        🛵 25–30 min &nbsp; • &nbsp; Free Delivery
+                    </div>
+
+                    <span class="offer-badge">
+                        20% OFF
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Restaurant 2 -->
+           <div class="restaurant-card" onclick="openRestaurant('pizza')">
+
+                <div class="restaurant-image">
+                    <img 
+                        src="https://images.unsplash.com/photo-1513104890138-7c749659a591"
+                        alt="Pizza House"
+                    >
+
+                    <button class="favourite" onclick="toggleFavourite(this)">
+                        ♡
+                    </button>
+                </div>
+
+                <div class="restaurant-info">
+                    <h3>Pizza House</h3>
+
+                    <div class="restaurant-meta">
+                        ⭐ 4.5 &nbsp; • &nbsp; 🍕 Italian
+                    </div>
+
+                    <div class="restaurant-price">
+                        ₹350 for two
+                    </div>
+
+                    <div class="restaurant-delivery">
+                        🛵 30–35 min &nbsp; • &nbsp; Free Delivery
+                    </div>
+
+                    <span class="offer-badge">
+                        FLAT ₹100 OFF
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Restaurant 3 -->
+           <div class="restaurant-card" onclick="openRestaurant('foodjunction')">
+
+                <div class="restaurant-image">
+                    <img 
+                        src="https://images.unsplash.com/photo-1552566626-52f8b828add9"
+                        alt="Food Junction"
+                    >
+
+                    <button class="favourite" onclick="toggleFavourite(this)">
+                        ♡
+                    </button>
+                </div>
+
+                <div class="restaurant-info">
+                    <h3>Food Junction</h3>
+
+                    <div class="restaurant-meta">
+                        ⭐ 4.7 &nbsp; • &nbsp; 🍜 Chinese
+                    </div>
+
+                    <div class="restaurant-price">
+                        ₹300 for two
+                    </div>
+
+                    <div class="restaurant-delivery">
+                        🛵 20–25 min &nbsp; • &nbsp; Free Delivery
+                    </div>
+
+                    <span class="offer-badge">
+                        30% OFF
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Restaurant 4 -->
+            <div class="restaurant-card" onclick="openRestaurant('royalbites')">
+
+                <div class="restaurant-image">
+                    <img 
+                        src="https://images.unsplash.com/photo-1601050690597-df0568f70950"
+                        alt="Royal Bites"
+                    >
+
+                    <button class="favourite" onclick="event.stopPropagation(); toggleFavourite(this)">
+                        ♡
+                    </button>
+                </div>
+
+                <div class="restaurant-info">
+                    <h3>Royal Bites</h3>
+
+                    <div class="restaurant-meta">
+                        ⭐ 4.8 &nbsp; • &nbsp; 🍛 Indian
+                    </div>
+
+                    <div class="restaurant-price">
+                        ₹250 for two
+                    </div>
+
+                    <div class="restaurant-delivery">
+                        🛵 25–30 min &nbsp; • &nbsp; Free Delivery
+                    </div>
+
+                    <span class="offer-badge">
+                        25% OFF
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- Popular Dishes -->
     <section class="popular-dishes">
@@ -958,5 +1213,30 @@
             </div>
         </div>
     </footer>
+
+    <script>
+
+function openRestaurant(id) {
+    window.location.href = "restaurant.html?id=" + id;
+}
+
+
+function toggleFavourite(button) {
+
+    if (button.innerHTML === "♡") {
+
+        button.innerHTML = "♥";
+        button.style.color = "#FF5A36";
+
+    } else {
+
+        button.innerHTML = "♡";
+        button.style.color = "#292524";
+
+    }
+
+}
+
+</script>
 </body>
 </html>
