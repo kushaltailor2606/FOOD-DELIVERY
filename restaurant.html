@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant - FOODOLU</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #FFF9F5;
+            color: #292524;
+        }
+
+        /* HEADER */
+        header {
+            background: #fff;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #8B1E1E;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #8B1E1E;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* RESTAURANT COVER */
+        .restaurant-cover {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .restaurant-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.65);
+        }
+
+        .restaurant-title {
+            position: absolute;
+            bottom: 30px;
+            left: 7%;
+            color: white;
+        }
+
+        .restaurant-title h1 {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        .restaurant-title p {
+            font-size: 17px;
+        }
+
+        /* DETAILS */
+        .restaurant-details {
+            background: white;
+            padding: 22px 7%;
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail {
+            font-size: 15px;
+        }
+
+        .detail strong {
+            color: #8B1E1E;
+        }
+
+        /* MENU */
+        .menu-section {
+            width: 86%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .menu-section h2 {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .menu-info h3 {
+            margin-bottom: 7px;
+            font-size: 19px;
+        }
+
+        .menu-info p {
+            color: #777;
+            font-size: 14px;
+            max-width: 350px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+            color: #8B1E1E;
+        }
+
+        .add-btn {
+            background: #FF5A36;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* CART */
+        .cart {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #8B1E1E;
+            color: white;
+            padding: 15px 22px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 200;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .restaurant-title h1 {
+                font-size: 30px;
+            }
+
+            .restaurant-cover {
+                height: 240px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .restaurant-details {
+                gap: 15px;
+            }
+
+            .menu-item {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">FOODOLU</div>
+
+        <a href="index.html" class="back-btn">
+            ← Back to Restaurants
+        </a>
+    </header>
+
+
+    <!-- RESTAURANT COVER -->
+    <section class="restaurant-cover">
+        <img id="restaurantImage" src="" alt="Restaurant">
+
+        <div class="restaurant-title">
+            <h1 id="restaurantName">Restaurant</h1>
+            <p id="restaurantCuisine"></p>
+        </div>
+    </section>
+
+
+    <!-- RESTAURANT DETAILS -->
+    <div class="restaurant-details">
+
+        <div class="detail">
+            ⭐ <strong id="restaurantRating">4.5</strong>
+        </div>
+
+        <div class="detail">
+            🍽️ <span id="restaurantCuisine2">Indian</span>
+        </div>
+
+        <div class="detail">
+            💰 <span id="restaurantPrice">₹200 for two</span>
+        </div>
+
+        <div class="detail">
+            🛵 <span id="restaurantDelivery">30-40 min</span>
+        </div>
+
+        <div class="detail">
+            🔥 <strong id="restaurantOffer">20% OFF</strong>
+        </div>
+
+    </div>
+
+
+    <!-- MENU -->
+    <section class="menu-section">
+
+        <h2>Popular Dishes</h2>
+
+        <div class="menu-grid" id="menuContainer"></div>
+
+    </section>
+
+
+    <!-- CART -->
+    <div class="cart" id="cart">
+        🛒 Cart: <span id="cartCount">0</span> items
+    </div>
+
+  <script>
+
+
+   let cart = JSON.parse(localStorage.getItem("foodoluCart")) || [];
+
+
+function addToCart(name, price) {
+
+    const existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem("foodoluCart", JSON.stringify(cart));
+
+    updateCart();
+
+}
+
+
+function updateCart() {
+
+    let totalItems = 0;
+
+    cart.forEach(item => {
+        totalItems += item.quantity;
+    });
+
+    document.getElementById("cartCount").textContent = totalItems;
+
+    if (totalItems > 0) {
+        document.getElementById("cart").style.display = "block";
+    } else {
+        document.getElementById("cart").style.display = "none";
+    }
+}
+
+
+function openCart() {
+    window.location.href = "cart.html";
+}
+
+
+document.getElementById("cart").onclick = openCart;
+
+updateCart(); </script>
+
+</body>
+</html>
